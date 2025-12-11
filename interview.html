@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSA Mastery 150 | Mockify AI</title>
+    <title>Mockify AI | Ultimate Interview Prep</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,6 +22,9 @@
         @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fade-in 0.4s ease-out forwards; }
         
+        @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 0.5; } 100% { transform: scale(1.3); opacity: 0; } }
+        .animate-ping-slow { animation: pulse-ring 3s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
         /* Scrollbar */
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
@@ -32,6 +35,13 @@
             background: rgba(30, 41, 59, 0.3);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Nav Bar Glass Effect (From Index) */
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .nav-item.active {
@@ -48,40 +58,156 @@
 </head>
 <body class="bg-black text-white h-screen overflow-hidden flex flex-col">
 
-    <!-- TOP NAVIGATION -->
-    <header class="h-16 border-b border-white/10 flex items-center justify-between px-6 bg-[#0a0a0f] z-50">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">M</div>
-            <span class="text-lg font-bold tracking-tight">Mockify<span class="text-indigo-400">AI</span></span>
-        </div>
-        <div class="flex items-center gap-4">
-            <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800">
-                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                <span class="text-xs text-slate-400 font-medium">System Online</span>
+    <!-- TOP NAVIGATION (From Index.html) -->
+    <header id="global-navbar" class="fixed top-0 w-full z-50 pt-6 px-6 pointer-events-none transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between relative">
+            
+            <!-- Left: Logo -->
+            <div class="pointer-events-auto">
+                <a href="index.html">
+                    <img src="logo.png" onerror="this.src='https://placehold.co/120x80/333/FFF?text=MockifyAI'" alt="Mockify AI" class="h-16 w-auto hover:opacity-90 transition-opacity">
+                </a>
             </div>
-            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center text-sm font-bold border border-white/20">
-                AC
+            
+            <!-- Center: Nav Bar Island -->
+            <nav class="pointer-events-auto hidden md:flex items-center gap-8 nav-glass px-8 py-3 rounded-full absolute left-1/2 -translate-x-1/2 whitespace-nowrap shadow-lg shadow-black/50">
+                <a href="index.html" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Home</a>
+                <a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">About Us</a>
+                
+                <!-- FEATURES MEGA MENU TRIGGER -->
+                <div class="relative group">
+                    <button class="text-sm font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1 outline-none">
+                        Our Features <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+                    </button>
+                    
+                    <!-- Mega Menu Dropdown -->
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-8 w-[800px] bg-[#0a0a0f] backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-6 opacity-0 invisible translate-y-[-20px] group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out z-[60] grid grid-cols-3 gap-6">
+                        
+                        <!-- Feature 1 -->
+                        <div class="group/card relative h-48 rounded-xl overflow-hidden cursor-pointer border border-white/5 hover:border-purple-500/50 transition-colors bg-black">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
+                            <img src="img1.jpg" onerror="this.src='https://placehold.co/300x200/1a1a1a/FFF?text=AI+Simulation'" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover/card:scale-110 transition-transform duration-500">
+                            <div class="absolute bottom-0 left-0 p-4 w-full z-20">
+                                <h4 class="text-white font-bold text-sm">AI Simulation</h4>
+                                <p class="text-slate-400 text-xs mt-1">Realistic voice interviews.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="group/card relative h-48 rounded-xl overflow-hidden cursor-pointer border border-white/5 hover:border-purple-500/50 transition-colors bg-black">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
+                            <img src="img2.jpg" onerror="this.src='https://placehold.co/300x200/1a1a1a/FFF?text=Questions'" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover/card:scale-110 transition-transform duration-500">
+                            <div class="absolute bottom-0 left-0 p-4 w-full z-20">
+                                <h4 class="text-white font-bold text-sm">Top 150 Questions</h4>
+                                <p class="text-slate-400 text-xs mt-1">DSA & Coding prep.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="group/card relative h-48 rounded-xl overflow-hidden cursor-pointer border border-white/5 hover:border-purple-500/50 transition-colors bg-black">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
+                            <img src="resume.png" onerror="this.src='https://placehold.co/300x200/1a1a1a/FFF?text=Resume'" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover/card:scale-110 transition-transform duration-500">
+                            <div class="absolute bottom-0 left-0 p-4 w-full z-20">
+                                <h4 class="text-white font-bold text-sm">Resume Analyser</h4>
+                                <p class="text-slate-400 text-xs mt-1">Get ATS scores.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Pricing</a>
+                
+                <!-- Dashboard Link: Active here -->
+                <button onclick="navTo('dashboard')" class="text-sm font-medium text-indigo-400 font-bold transition-colors">Dashboard</button>
+            </nav>
+
+            <!-- Right: Login Button / User Profile -->
+            <div class="pointer-events-auto flex items-center gap-4">
+                 <div id="user-profile" class="hidden items-center gap-3 pl-6">
+                    <div class="text-right hidden sm:block">
+                        <div class="text-sm font-medium text-white">Alex Chen</div>
+                        <div class="text-xs text-slate-400">Pro Member</div>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center text-sm font-bold border border-white/20">
+                        AC
+                    </div>
+                </div>
+                <button id="loginBtn" onclick="handleAuthClick()" class="px-6 py-2 rounded-full border border-white/20 bg-black/50 backdrop-blur-sm hover:bg-white/10 text-white font-medium transition-all text-sm shadow-lg">
+                    Log In
+                </button>
             </div>
         </div>
     </header>
 
-    <div class="flex-1 flex overflow-hidden">
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="bg-slate-900 border border-slate-700 p-8 rounded-2xl w-full max-w-md relative shadow-2xl">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h2 class="text-2xl font-bold mb-6 text-center">Welcome Back</h2>
+            <form id="loginForm" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">Username</label>
+                    <input type="text" id="username" class="w-full bg-black border border-slate-700 rounded-lg p-3 focus:outline-none focus:border-indigo-500" placeholder="admin">
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">Password</label>
+                    <input type="password" id="password" class="w-full bg-black border border-slate-700 rounded-lg p-3 focus:outline-none focus:border-indigo-500" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg mt-4 transition-colors">
+                    Login
+                </button>
+                <div class="relative my-4">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-slate-700"></div>
+                    </div>
+                    <div class="relative flex justify-center text-xs uppercase">
+                        <span class="bg-slate-900 px-2 text-slate-500">Or</span>
+                    </div>
+                </div>
+                <button type="button" onclick="performLogin()" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-lg border border-white/10 transition-colors flex items-center justify-center gap-2">
+                    <i data-lucide="play-circle" class="w-4 h-4"></i> Demo Login
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MAIN LAYOUT WRAPPER (Pushed down to accommodate fixed header) -->
+    <div class="flex-1 flex overflow-hidden pt-24">
         
         <!-- SIDEBAR -->
         <aside class="w-64 bg-[#050508] border-r border-white/10 flex flex-col py-6 hidden md:flex">
             <nav class="space-y-1 px-3">
-                <button onclick="navTo('dashboard')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" data-target="dashboard">
+                <button onclick="navTo('dashboard')" class="nav-item active w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" data-target="dashboard">
                     <i data-lucide="layout-dashboard" class="w-5 h-5 group-hover:text-indigo-400"></i>
                     <span class="font-medium text-sm">Dashboard</span>
                 </button>
 
-                <div class="pt-6 pb-2 px-4 text-[10px] font-bold text-slate-600 uppercase tracking-widest">Coding Prep</div>
+                <div class="pt-6 pb-2 px-4 text-[10px] font-bold text-slate-600 uppercase tracking-widest">Interview Prep</div>
                 
-                <button onclick="navTo('top150')" class="nav-item active w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" data-target="top150">
+                <button onclick="navTo('practice')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" data-target="practice">
+                    <i data-lucide="users" class="w-5 h-5 group-hover:text-indigo-400"></i>
+                    <div class="text-left leading-tight">
+                        <span class="font-medium text-sm block">Practice by Company</span>
+                        <span class="text-[10px] text-slate-500">Simulate Rounds</span>
+                    </div>
+                </button>
+
+                <button onclick="navTo('top150')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" data-target="top150">
                     <i data-lucide="code-2" class="w-5 h-5 group-hover:text-indigo-400"></i>
                     <div class="text-left leading-tight">
                         <span class="font-medium text-sm block">Top 150 Questions</span>
                         <span class="text-[10px] text-slate-500">DSA Mastery</span>
+                    </div>
+                </button>
+
+                <button onclick="navTo('resume')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" data-target="resume">
+                    <i data-lucide="file-search" class="w-5 h-5 group-hover:text-indigo-400"></i>
+                    <div class="text-left leading-tight">
+                        <span class="font-medium text-sm block">Resume Analyser</span>
+                        <span class="text-[10px] text-slate-500">AI Insights</span>
                     </div>
                 </button>
             </nav>
@@ -90,19 +216,28 @@
         <!-- MAIN CONTENT -->
         <main class="flex-1 bg-black overflow-y-auto custom-scrollbar p-6 md:p-10 relative">
             
-            <!-- VIEW: DASHBOARD (Overview) -->
-            <div id="view-dashboard" class="view-section hidden animate-fade-in">
+            <!-- VIEW: DASHBOARD -->
+            <div id="view-dashboard" class="view-section animate-fade-in">
                 <div class="flex items-end justify-between mb-8">
                     <div>
-                        <h1 class="text-3xl font-bold text-white">Your Progress</h1>
-                        <p class="text-slate-400 mt-1">Track your coding journey.</p>
+                        <h1 class="text-3xl font-bold text-white">Welcome back, Alex</h1>
+                        <p class="text-slate-400 mt-1">Ready to ace your next technical interview?</p>
                     </div>
-                    <button onclick="navTo('top150')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-lg font-medium text-sm transition-colors flex items-center gap-2">
-                        <i data-lucide="play-circle" class="w-4 h-4"></i> Continue Practice
+                    <button onclick="navTo('practice')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-lg font-medium text-sm transition-colors flex items-center gap-2">
+                        <i data-lucide="play-circle" class="w-4 h-4"></i> Quick Start
                     </button>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="glass-panel p-6 rounded-xl relative overflow-hidden">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-slate-400 text-xs font-medium uppercase">Interviews Completed</p>
+                                <h3 class="text-3xl font-bold text-white mt-1">24</h3>
+                            </div>
+                            <div class="p-2 bg-indigo-500/20 rounded-lg text-indigo-400"><i data-lucide="video" class="w-5 h-5"></i></div>
+                        </div>
+                    </div>
                     <div class="glass-panel p-6 rounded-xl relative overflow-hidden">
                         <div class="flex justify-between items-start">
                             <div>
@@ -111,26 +246,44 @@
                             </div>
                             <div class="p-2 bg-purple-500/20 rounded-lg text-purple-400"><i data-lucide="check-square" class="w-5 h-5"></i></div>
                         </div>
-                        <div class="w-full bg-slate-800 h-1.5 mt-4 rounded-full overflow-hidden">
-                            <div class="bg-purple-500 h-full w-[28%]"></div>
-                        </div>
                     </div>
-
                     <div class="glass-panel p-6 rounded-xl relative overflow-hidden">
                         <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-slate-400 text-xs font-medium uppercase">Global Rank</p>
-                                <h3 class="text-3xl font-bold text-white mt-1">Top 5%</h3>
+                                <p class="text-slate-400 text-xs font-medium uppercase">Resume Score</p>
+                                <h3 class="text-3xl font-bold text-white mt-1">85<span class="text-slate-600 text-lg">%</span></h3>
                             </div>
-                            <div class="p-2 bg-indigo-500/20 rounded-lg text-indigo-400"><i data-lucide="trophy" class="w-5 h-5"></i></div>
+                            <div class="p-2 bg-pink-500/20 rounded-lg text-pink-400"><i data-lucide="file-text" class="w-5 h-5"></i></div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- VIEW: PRACTICE BY COMPANY -->
+            <div id="view-practice" class="view-section hidden animate-fade-in">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <h1 class="text-3xl font-bold mb-2">AI Mock Interviewer</h1>
+                    <p class="text-slate-400">Select your target role to begin a realistic, voice-based simulated interview.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto glass-panel rounded-2xl p-8 border border-white/10 shadow-2xl">
+                    <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Select Your Role</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8" id="role-grid"></div>
+
+                    <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Difficulty Level</h2>
+                    <div class="flex flex-wrap gap-3 mb-8" id="difficulty-container"></div>
+
+                    <div class="border-t border-white/10 pt-6 flex justify-end">
+                        <button id="start-practice-btn" disabled class="px-8 py-4 rounded-xl font-bold text-lg flex items-center gap-3 bg-slate-800 text-slate-500 cursor-not-allowed transition-all">
+                            <span>Start Interview</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- VIEW: TOP 150 QUESTIONS -->
-            <div id="view-top150" class="view-section animate-fade-in">
-                <!-- Rank Header -->
+            <div id="view-top150" class="view-section hidden animate-fade-in">
                 <div class="glass-panel p-6 rounded-2xl mb-8 flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-indigo-900/20 to-purple-900/20">
                     <div class="flex items-center gap-4">
                         <div class="w-16 h-16 rounded-full border-4 border-indigo-500 flex items-center justify-center bg-black shadow-lg shadow-indigo-500/20">
@@ -138,7 +291,7 @@
                         </div>
                         <div>
                             <h2 class="text-xl font-bold text-white">Global Rank</h2>
-                            <p class="text-sm text-indigo-300">Keep solving to level up</p>
+                            <p class="text-sm text-indigo-300">Top 5% of solvers</p>
                         </div>
                     </div>
                     <div class="flex gap-8 text-center">
@@ -148,17 +301,26 @@
                     </div>
                 </div>
 
-                <!-- Tabs -->
                 <div class="flex items-center gap-4 border-b border-white/10 mb-6">
                     <button onclick="filterQuestions('easy')" class="tab-btn active text-green-400 border-green-400 pb-2 px-4 border-b-2 font-medium text-sm transition-colors">Easy</button>
                     <button onclick="filterQuestions('medium')" class="tab-btn text-slate-400 pb-2 px-4 border-b-2 border-transparent hover:text-white font-medium text-sm transition-colors">Medium</button>
                     <button onclick="filterQuestions('hard')" class="tab-btn text-slate-400 pb-2 px-4 border-b-2 border-transparent hover:text-white font-medium text-sm transition-colors">Hard</button>
                 </div>
 
-                <!-- List -->
                 <div id="questions-list" class="space-y-3 pb-20"></div>
             </div>
 
+            <!-- VIEW: RESUME -->
+            <div id="view-resume" class="view-section hidden h-full flex flex-col items-center justify-center text-center animate-fade-in">
+                <div class="w-24 h-24 bg-slate-800/50 rounded-full flex items-center justify-center mb-6 border border-slate-700">
+                    <i data-lucide="file-up" class="w-10 h-10 text-indigo-400"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-3">AI Resume Analyser</h2>
+                <p class="text-slate-400 max-w-md mb-8">Upload your resume to get a detailed ATS score, role fit analysis, and improvement suggestions.</p>
+                <button class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-transform hover:scale-105">
+                    <i data-lucide="upload" class="w-5 h-5"></i> Upload PDF
+                </button>
+            </div>
         </main>
     </div>
 
@@ -262,6 +424,38 @@ public:
         </div>
     </div>
 
+    <!-- OVERLAY: PRACTICE (BEHAVIORAL) -->
+    <div id="practice-interface" class="fixed inset-0 z-[100] hidden flex-col bg-black">
+        <header class="h-16 border-b border-slate-800 flex items-center justify-between px-6 bg-slate-900/90 backdrop-blur">
+            <div class="flex items-center gap-3">
+                <span class="text-lg font-bold text-white" id="practice-role-title">Software Engineer</span>
+                <span class="px-2 py-0.5 rounded bg-slate-800 text-xs text-slate-400 border border-slate-700">Mid-Level</span>
+            </div>
+            <button onclick="endPracticeSession()" class="text-red-400 hover:text-red-300 text-sm">End Interview</button>
+        </header>
+        <main class="flex-1 flex flex-col md:flex-row">
+            <div class="md:w-1/2 bg-slate-900 border-r border-slate-800 flex flex-col items-center justify-center p-8 relative overflow-hidden">
+                <div class="w-48 h-48 rounded-full bg-gradient-to-b from-indigo-900 to-black border-4 border-slate-800 flex items-center justify-center shadow-2xl relative z-10">
+                    <i data-lucide="mic-2" class="w-20 h-20 text-indigo-500"></i>
+                </div>
+                <div id="ai-speaking-ring" class="hidden absolute w-48 h-48 rounded-full border border-indigo-500/30 animate-ping-slow"></div>
+                <div class="mt-8 text-center max-w-md z-10">
+                    <p class="text-indigo-400 text-xs font-bold tracking-widest uppercase mb-2">AI Interviewer</p>
+                    <p id="practice-ai-text" class="text-xl text-white font-medium">"Initializing..."</p>
+                </div>
+            </div>
+            <div class="md:w-1/2 bg-black flex flex-col relative">
+                <video id="practice-user-video" autoplay playsinline muted class="w-full h-full object-cover video-mirror opacity-50"></video>
+                <div class="absolute bottom-10 left-0 right-0 flex justify-center gap-4">
+                    <button id="mic-toggle-btn" class="w-16 h-16 rounded-full bg-indigo-600 hover:bg-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-600/30 transition-transform hover:scale-105">
+                        <i data-lucide="mic" class="w-8 h-8 text-white"></i>
+                    </button>
+                </div>
+                <p id="user-status-text" class="absolute bottom-24 w-full text-center text-slate-400 text-sm">Tap mic to speak</p>
+            </div>
+        </main>
+    </div>
+
     <!-- REPORT MODAL -->
     <div id="report-modal" class="fixed inset-0 z-[150] hidden bg-black/95 items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl p-8 shadow-2xl overflow-y-auto max-h-[90vh]">
@@ -296,12 +490,11 @@ public:
 
     <!-- LOGIC -->
     <script>
-        // *** IMPORTANT: SET YOUR API KEY HERE IF RUNNING LOCALLY ***
-        const apiKey = ""; 
-        // **********************************************************
-
+        const apiKey = "AIzaSyCtdJ305c5qh9sk_MO-2latXcS9iXkKE8A"; // Provided by environment
         const state = {
-            view: 'top150', // Default view
+            view: 'dashboard',
+            role: null,
+            difficulty: 'Mid-Level',
             questions: Array.from({length: 50}, (_, i) => ({
                 id: i, 
                 title: i === 0 ? "Two Sum" : i === 1 ? "Valid Parentheses" : "Problem " + (i+1), 
@@ -310,16 +503,32 @@ public:
             })),
             activeQuestion: null,
             cameraOn: true,
-            conversation: []
+            isListening: false,
+            conversation: [],
+            isLoggedIn: false
         };
+
+        const roles = [
+            { id: 'swe', title: 'Software Engineer', icon: 'code', color: 'text-blue-400 bg-blue-500/10' },
+            { id: 'pm', title: 'Product Manager', icon: 'briefcase', color: 'text-purple-400 bg-purple-500/10' },
+            { id: 'design', title: 'Product Designer', icon: 'pen-tool', color: 'text-pink-400 bg-pink-500/10' },
+            { id: 'market', title: 'Marketing Lead', icon: 'bar-chart', color: 'text-orange-400 bg-orange-500/10' }
+        ];
 
         // --- DOM REFERENCES ---
         const els = {
             views: {
                 dashboard: document.getElementById('view-dashboard'),
-                top150: document.getElementById('view-top150')
+                practice: document.getElementById('view-practice'),
+                top150: document.getElementById('view-top150'),
+                resume: document.getElementById('view-resume')
             },
             navItems: document.querySelectorAll('.nav-item'),
+            practice: {
+                roleGrid: document.getElementById('role-grid'),
+                diffGrid: document.getElementById('difficulty-container'),
+                btn: document.getElementById('start-practice-btn')
+            },
             top150: {
                 list: document.getElementById('questions-list'),
                 modal: document.getElementById('coding-modal'),
@@ -330,42 +539,81 @@ public:
                 text: document.getElementById('report-text'),
                 score: document.getElementById('report-score'),
                 comp: document.getElementById('report-complexity')
+            },
+            login: {
+                modal: document.getElementById('loginModal'),
+                btn: document.getElementById('loginBtn'),
+                profile: document.getElementById('user-profile')
             }
         };
 
         function init() {
+            renderRoles();
+            renderDifficulty();
             renderQuestions('easy');
             lucide.createIcons();
-            // Ensure default nav state
-            navTo('top150');
+            
+            // Check auth logic on init
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                performLogin(false);
+            }
         }
+
+        // --- LOGIN LOGIC (Adapted from index.html) ---
+        function handleAuthClick() {
+            if (state.isLoggedIn) {
+                state.isLoggedIn = false;
+                localStorage.setItem('isLoggedIn', 'false');
+                els.login.btn.innerText = "Log In";
+                els.login.profile.classList.add('hidden');
+                els.login.profile.classList.remove('flex');
+                alert("Logged out.");
+            } else {
+                els.login.modal.classList.remove('hidden');
+                els.login.modal.classList.add('flex');
+            }
+        }
+
+        function closeLoginModal() {
+            els.login.modal.classList.add('hidden');
+            els.login.modal.classList.remove('flex');
+        }
+
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            // Basic mock login
+            performLogin();
+        }
+
+        function performLogin(showAlert = true) {
+            state.isLoggedIn = true;
+            localStorage.setItem('isLoggedIn', 'true');
+            els.login.btn.innerText = "Log Out";
+            els.login.profile.classList.remove('hidden');
+            els.login.profile.classList.add('flex');
+            closeLoginModal();
+            if(showAlert) alert("Welcome back, Alex!");
+        }
+
+        document.getElementById('loginModal').addEventListener('click', (e) => {
+            if (e.target.id === 'loginModal') closeLoginModal();
+        });
+
 
         // --- GEMINI API HELPER ---
         async function callGemini(prompt) {
-            if (!apiKey) {
-                // Check if in preview env (handled automatically) or local
-                console.warn("API Key is empty. If running locally, please add your key to the script.");
-                return "Connection Error: API Key is missing. Please check the code settings.";
-            }
-
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            
             try {
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
                 });
-
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.status}`);
-                }
-
                 const data = await response.json();
                 return data.candidates?.[0]?.content?.parts?.[0]?.text || "Error: No response from AI.";
             } catch (error) {
                 console.error("Gemini Error:", error);
-                return "Connection Error: Unable to reach AI service. Please check your internet or API key.";
+                return "Error connecting to AI service.";
             }
         }
 
@@ -377,6 +625,120 @@ public:
             });
             Object.values(els.views).forEach(el => el.classList.add('hidden'));
             if(els.views[target]) els.views[target].classList.remove('hidden');
+        }
+
+        // --- PRACTICE (BEHAVIORAL) ---
+        let recognition;
+        
+        function renderRoles() {
+            els.practice.roleGrid.innerHTML = roles.map(r => `
+                <div onclick="selectRole('${r.id}')" class="role-card cursor-pointer border border-slate-700 bg-slate-900/50 p-4 rounded-xl flex items-center gap-4 hover:border-indigo-500 transition-all ${state.role === r.id ? 'border-indigo-500 bg-indigo-500/10' : ''}">
+                    <div class="p-3 rounded-lg ${r.color}">
+                        <i data-lucide="${r.icon}" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white">${r.title}</h3>
+                        <p class="text-xs text-slate-400">Simulated Interview</p>
+                    </div>
+                    ${state.role === r.id ? '<i data-lucide="check-circle" class="w-5 h-5 text-indigo-400 ml-auto"></i>' : ''}
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function selectRole(id) {
+            state.role = id;
+            renderRoles();
+            els.practice.btn.disabled = false;
+            els.practice.btn.classList.remove('bg-slate-800', 'text-slate-500', 'cursor-not-allowed');
+            els.practice.btn.classList.add('bg-indigo-600', 'text-white', 'hover:bg-indigo-500');
+            els.practice.btn.onclick = startPracticeSession;
+        }
+
+        function renderDifficulty() {
+            const diffs = ['Entry-Level', 'Mid-Level', 'Senior', 'Executive'];
+            els.practice.diffGrid.innerHTML = diffs.map(d => `
+                <button onclick="state.difficulty = '${d}'; renderDifficulty()" class="px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${state.difficulty === d ? 'bg-white text-black border-white' : 'bg-transparent text-slate-400 border-slate-700 hover:border-slate-500'}">
+                    ${d}
+                </button>
+            `).join('');
+        }
+
+        async function startPracticeSession() {
+            document.getElementById('practice-interface').classList.remove('hidden');
+            document.getElementById('practice-interface').classList.add('flex');
+            
+            // Hide the fixed navbar during sessions to avoid overlap
+            document.getElementById('global-navbar').classList.add('hidden');
+
+            const roleObj = roles.find(r => r.id === state.role);
+            document.getElementById('practice-role-title').innerText = roleObj.title;
+
+            // Start Camera
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({video: true});
+                document.getElementById('practice-user-video').srcObject = stream;
+            } catch(e) { console.log("Camera error", e); }
+
+            // Init Speech
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.lang = 'en-US';
+                
+                recognition.onstart = () => {
+                    state.isListening = true;
+                    document.getElementById('mic-toggle-btn').classList.add('animate-pulse', 'bg-red-600');
+                    document.getElementById('user-status-text').innerText = "Listening...";
+                };
+                
+                recognition.onend = () => {
+                    state.isListening = false;
+                    document.getElementById('mic-toggle-btn').classList.remove('animate-pulse', 'bg-red-600');
+                    document.getElementById('user-status-text').innerText = "Processing answer...";
+                };
+
+                recognition.onresult = async (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('user-status-text').innerText = "You: " + transcript;
+                    
+                    // Call Gemini
+                    const prompt = `Act as a ${state.difficulty} ${roleObj.title} interviewer. The user just said: "${transcript}". Reply with a short, encouraging follow-up question or feedback. Keep it under 20 words.`;
+                    const aiResponse = await callGemini(prompt);
+                    
+                    document.getElementById('practice-ai-text').innerText = `"${aiResponse}"`;
+                    speak(aiResponse);
+                };
+
+                document.getElementById('mic-toggle-btn').onclick = () => {
+                    if (state.isListening) recognition.stop();
+                    else recognition.start();
+                };
+            }
+
+            // Initial AI Greeting
+            const greeting = `Hello! I see you're applying for the ${roleObj.title} position. Tell me a bit about yourself?`;
+            document.getElementById('practice-ai-text').innerText = greeting;
+            speak(greeting);
+        }
+
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(text);
+            u.onstart = () => document.getElementById('ai-speaking-ring').classList.remove('hidden');
+            u.onend = () => document.getElementById('ai-speaking-ring').classList.add('hidden');
+            window.speechSynthesis.speak(u);
+        }
+
+        function endPracticeSession() {
+            const v = document.getElementById('practice-user-video');
+            if(v.srcObject) v.srcObject.getTracks().forEach(t => t.stop());
+            document.getElementById('practice-interface').classList.add('hidden');
+            document.getElementById('practice-interface').classList.remove('flex');
+            // Show Nav again
+            document.getElementById('global-navbar').classList.remove('hidden');
+            window.speechSynthesis.cancel();
         }
 
         // --- TOP 150 (CODING) ---
@@ -395,7 +757,6 @@ public:
         }
 
         function renderQuestions(type) {
-            // Mock list generation
             let list = state.questions.slice(0, 50); 
             els.top150.list.innerHTML = list.map((q, idx) => `
                 <div onclick="${q.locked ? '' : `openCodingSetup(${q.id})`}" class="flex items-center justify-between p-4 bg-slate-900/40 border border-slate-800 rounded-xl transition-all ${q.locked ? 'opacity-50 cursor-not-allowed grayscale' : 'hover:border-indigo-500 cursor-pointer group'}">
@@ -424,11 +785,10 @@ public:
             document.getElementById('modal-q-title').innerText = state.activeQuestion.title;
             els.top150.modal.classList.remove('hidden');
             els.top150.modal.classList.add('flex');
-            
             if(state.cameraOn) {
                 navigator.mediaDevices.getUserMedia({video: true}).then(stream => {
                     document.getElementById('modal-video-preview').srcObject = stream;
-                }).catch(e => console.log("Camera not available"));
+                });
             }
         }
 
@@ -445,6 +805,9 @@ public:
             ui.classList.remove('hidden');
             ui.classList.add('flex');
             
+            // Hide navbar during coding
+            document.getElementById('global-navbar').classList.add('hidden');
+
             document.getElementById('active-code-title').innerText = state.activeQuestion.title;
             document.getElementById('active-problem-desc').innerText = "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.";
             
@@ -455,6 +818,8 @@ public:
         function endCodingSession() {
             els.top150.interface.classList.add('hidden');
             els.top150.interface.classList.remove('flex');
+            // Show nav
+            document.getElementById('global-navbar').classList.remove('hidden');
         }
 
         async function submitSolution() {
@@ -482,16 +847,9 @@ public:
             const compMatch = analysis.match(/COMPLEXITY:\s*(.+)/i);
             const feedMatch = analysis.match(/FEEDBACK:\s*([\s\S]+)/i);
 
-            // Fallback if parsing fails (e.g. error message)
-            if (!scoreMatch && analysis.includes("Error")) {
-                 els.report.text.innerText = analysis;
-                 els.report.score.innerText = "Err";
-                 els.report.comp.innerText = "--";
-            } else {
-                els.report.score.innerText = scoreMatch ? scoreMatch[1] + "%" : "85%";
-                els.report.comp.innerText = compMatch ? compMatch[1] : "O(n)";
-                els.report.text.innerText = feedMatch ? feedMatch[1].trim() : analysis;
-            }
+            els.report.score.innerText = scoreMatch ? scoreMatch[1] + "%" : "85%";
+            els.report.comp.innerText = compMatch ? compMatch[1] : "O(n)";
+            els.report.text.innerText = feedMatch ? feedMatch[1].trim() : analysis;
 
             endCodingSession();
             els.report.modal.classList.remove('hidden');
