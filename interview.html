@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Mastery 150 | Mockify AI</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: white; }
+        
+        /* Animations */
+        @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fade-in 0.4s ease-out forwards; }
+        
+        /* Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 3px; }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.3);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border-right: 3px solid #6366f1;
+        }
+
+        /* Video Mirror */
+        .video-mirror {
+            transform: scaleX(-1);
+        }
+    </style>
+</head>
+<body class="bg-black text-white h-screen overflow-hidden flex flex-col">
+
+    <!-- TOP NAVIGATION -->
+    <header class="h-16 border-b border-white/10 flex items-center justify-between px-6 bg-[#0a0a0f] z-50">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">M</div>
+            <span class="text-lg font-bold tracking-tight">Mockify<span class="text-indigo-400">AI</span></span>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800">
+                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span class="text-xs text-slate-400 font-medium">System Online</span>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center text-sm font-bold border border-white/20">
+                AC
+            </div>
+        </div>
+    </header>
+
+    <div class="flex-1 flex overflow-hidden">
+        
+        <!-- SIDEBAR -->
+        <aside class="w-64 bg-[#050508] border-r border-white/10 flex flex-col py-6 hidden md:flex">
+            <nav class="space-y-1 px-3">
+                <button onclick="navTo('dashboard')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" data-target="dashboard">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 group-hover:text-indigo-400"></i>
+                    <span class="font-medium text-sm">Dashboard</span>
+                </button>
+
+                <div class="pt-6 pb-2 px-4 text-[10px] font-bold text-slate-600 uppercase tracking-widest">Coding Prep</div>
+                
+                <button onclick="navTo('top150')" class="nav-item active w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" data-target="top150">
+                    <i data-lucide="code-2" class="w-5 h-5 group-hover:text-indigo-400"></i>
+                    <div class="text-left leading-tight">
+                        <span class="font-medium text-sm block">Top 150 Questions</span>
+                        <span class="text-[10px] text-slate-500">DSA Mastery</span>
+                    </div>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 bg-black overflow-y-auto custom-scrollbar p-6 md:p-10 relative">
+            
+            <!-- VIEW: DASHBOARD (Overview) -->
+            <div id="view-dashboard" class="view-section hidden animate-fade-in">
+                <div class="flex items-end justify-between mb-8">
+                    <div>
+                        <h1 class="text-3xl font-bold text-white">Your Progress</h1>
+                        <p class="text-slate-400 mt-1">Track your coding journey.</p>
+                    </div>
+                    <button onclick="navTo('top150')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-lg font-medium text-sm transition-colors flex items-center gap-2">
+                        <i data-lucide="play-circle" class="w-4 h-4"></i> Continue Practice
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="glass-panel p-6 rounded-xl relative overflow-hidden">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-slate-400 text-xs font-medium uppercase">Questions Solved</p>
+                                <h3 class="text-3xl font-bold text-white mt-1">42<span class="text-slate-600 text-lg">/150</span></h3>
+                            </div>
+                            <div class="p-2 bg-purple-500/20 rounded-lg text-purple-400"><i data-lucide="check-square" class="w-5 h-5"></i></div>
+                        </div>
+                        <div class="w-full bg-slate-800 h-1.5 mt-4 rounded-full overflow-hidden">
+                            <div class="bg-purple-500 h-full w-[28%]"></div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-xl relative overflow-hidden">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-slate-400 text-xs font-medium uppercase">Global Rank</p>
+                                <h3 class="text-3xl font-bold text-white mt-1">Top 5%</h3>
+                            </div>
+                            <div class="p-2 bg-indigo-500/20 rounded-lg text-indigo-400"><i data-lucide="trophy" class="w-5 h-5"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: TOP 150 QUESTIONS -->
+            <div id="view-top150" class="view-section animate-fade-in">
+                <!-- Rank Header -->
+                <div class="glass-panel p-6 rounded-2xl mb-8 flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-indigo-900/20 to-purple-900/20">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-full border-4 border-indigo-500 flex items-center justify-center bg-black shadow-lg shadow-indigo-500/20">
+                            <span class="text-xl font-bold text-white">#42</span>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Global Rank</h2>
+                            <p class="text-sm text-indigo-300">Keep solving to level up</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-8 text-center">
+                        <div><div class="text-2xl font-bold text-green-400">12</div><div class="text-xs text-slate-400 uppercase font-medium">Easy</div></div>
+                        <div><div class="text-2xl font-bold text-yellow-400">24</div><div class="text-xs text-slate-400 uppercase font-medium">Medium</div></div>
+                        <div><div class="text-2xl font-bold text-red-400">6</div><div class="text-xs text-slate-400 uppercase font-medium">Hard</div></div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex items-center gap-4 border-b border-white/10 mb-6">
+                    <button onclick="filterQuestions('easy')" class="tab-btn active text-green-400 border-green-400 pb-2 px-4 border-b-2 font-medium text-sm transition-colors">Easy</button>
+                    <button onclick="filterQuestions('medium')" class="tab-btn text-slate-400 pb-2 px-4 border-b-2 border-transparent hover:text-white font-medium text-sm transition-colors">Medium</button>
+                    <button onclick="filterQuestions('hard')" class="tab-btn text-slate-400 pb-2 px-4 border-b-2 border-transparent hover:text-white font-medium text-sm transition-colors">Hard</button>
+                </div>
+
+                <!-- List -->
+                <div id="questions-list" class="space-y-3 pb-20"></div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- MODAL: CODING SESSION SETUP -->
+    <div id="coding-modal" class="fixed inset-0 z-[60] hidden bg-black/90 backdrop-blur-md items-center justify-center p-4">
+        <div class="bg-[#0f1016] border border-slate-700 rounded-2xl w-full max-w-md p-6 shadow-2xl">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <h3 class="text-xl font-bold text-white" id="modal-q-title">Two Sum</h3>
+                    <span class="text-xs font-mono text-green-400 border border-green-500/30 px-2 py-0.5 rounded" id="modal-q-diff">Easy</span>
+                </div>
+                <button onclick="closeCodingModal()" class="text-slate-500 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+            </div>
+            <div class="space-y-5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Candidate Name</label>
+                    <input type="text" value="Alex Chen" class="w-full bg-black border border-slate-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-indigo-500">
+                </div>
+                <div class="relative">
+                    <div class="aspect-video bg-black rounded-xl overflow-hidden border border-slate-800 relative group">
+                        <video id="modal-video-preview" autoplay playsinline muted class="w-full h-full object-cover video-mirror"></video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <i data-lucide="video" class="w-8 h-8 text-slate-700 opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="startCodingSession()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2">
+                    Start Session <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERLAY: CODING INTERVIEW INTERFACE -->
+    <div id="coding-interface" class="fixed inset-0 z-[100] hidden flex-col bg-[#050508]">
+        <header class="h-14 border-b border-slate-800 bg-[#0a0a0f] flex items-center justify-between px-4">
+            <div class="flex items-center gap-3">
+                <span class="font-bold text-slate-300">Live Assessment</span>
+                <span class="text-slate-700">|</span>
+                <span id="active-code-title" class="text-indigo-400 font-medium text-sm">Two Sum</span>
+            </div>
+            <button onclick="endCodingSession()" class="text-xs text-slate-400 hover:text-white px-3 py-1 hover:bg-white/5 rounded">Exit</button>
+        </header>
+
+        <div class="flex-1 flex overflow-hidden">
+            <!-- LEFT: AI & Problem -->
+            <div class="w-[350px] md:w-[400px] border-r border-slate-800 flex flex-col bg-[#0a0a0f]">
+                <div class="p-6 border-b border-slate-800 flex flex-col items-center text-center bg-gradient-to-b from-indigo-900/10 to-transparent">
+                    <div class="w-20 h-20 rounded-full bg-indigo-600 p-1 shadow-xl shadow-indigo-600/20 mb-3 relative">
+                         <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
+                             <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Felix" alt="AI" class="w-16 h-16">
+                         </div>
+                    </div>
+                    <p id="ai-status-text" class="text-xs text-indigo-300 font-medium mb-1">AI Interviewer</p>
+                    <p class="text-slate-400 text-sm italic">"I'm analyzing your code in real-time."</p>
+                </div>
+                <div class="flex-1 overflow-y-auto p-6 custom-scrollbar">
+                    <h3 class="text-white font-bold mb-2 text-sm uppercase tracking-wide">Problem Statement</h3>
+                    <p id="active-problem-desc" class="text-slate-300 text-sm leading-relaxed mb-4">Loading problem...</p>
+                </div>
+                <div class="h-48 border-t border-slate-800 bg-black p-4 flex flex-col">
+                    <div id="ai-chat-log" class="flex-1 overflow-y-auto space-y-2 mb-2 text-xs">
+                        <div class="text-slate-500 italic text-center mt-4">Session started...</div>
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="text" id="ai-chat-input" placeholder="Ask for a hint..." class="flex-1 bg-slate-900 border border-slate-700 rounded px-3 py-2 text-xs text-white focus:border-indigo-500 focus:outline-none">
+                        <button onclick="sendChatMessage()" class="bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded"><i data-lucide="send" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Code Editor -->
+            <div class="flex-1 flex flex-col bg-[#0f172a]">
+                <div class="h-10 bg-[#1e293b] flex items-center justify-between px-4 border-b border-slate-700">
+                    <div class="flex items-center gap-2">
+                        <span class="text-blue-400"><i data-lucide="file-code" class="w-4 h-4"></i></span>
+                        <span class="text-xs text-slate-300 font-mono">solution.cpp</span>
+                    </div>
+                    <button onclick="submitSolution()" id="submit-btn" class="bg-green-600 hover:bg-green-500 text-white px-4 py-1 rounded text-xs font-bold flex items-center gap-2 transition-colors">
+                        <i data-lucide="play" class="w-3 h-3 fill-current"></i> Submit Code
+                    </button>
+                </div>
+                <div class="flex-1 relative flex">
+                    <div class="w-10 bg-[#0f172a] border-r border-slate-700 text-slate-600 text-xs font-mono text-right pr-2 pt-4 select-none leading-6">
+                        1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10
+                    </div>
+                    <textarea id="code-editor" class="flex-1 bg-[#0f172a] text-[#a5b3ce] font-mono text-sm p-4 outline-none resize-none leading-6 spellcheck-false" spellcheck="false">
+#include <vector>
+#include <iostream>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        // Write your solution here
+        return {};
+    }
+};</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REPORT MODAL -->
+    <div id="report-modal" class="fixed inset-0 z-[150] hidden bg-black/95 items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl p-8 shadow-2xl overflow-y-auto max-h-[90vh]">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="p-3 bg-green-500/20 rounded-full text-green-400"><i data-lucide="clipboard-check" class="w-8 h-8"></i></div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Analysis Report</h2>
+                    <p class="text-slate-400 text-sm">AI Performance Evaluation</p>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <div class="p-4 bg-slate-800/50 rounded-xl border border-slate-700">
+                    <h3 class="font-bold text-indigo-400 mb-2">Detailed Feedback</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed whitespace-pre-line" id="report-text">Generating...</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-slate-800/50 rounded-xl border border-slate-700 text-center">
+                        <div class="text-3xl font-bold text-white mb-1" id="report-score">--</div>
+                        <div class="text-xs text-slate-500 uppercase">Score</div>
+                    </div>
+                    <div class="p-4 bg-slate-800/50 rounded-xl border border-slate-700 text-center">
+                        <div class="text-3xl font-bold text-white mb-1" id="report-complexity">--</div>
+                        <div class="text-xs text-slate-500 uppercase">Time Complexity</div>
+                    </div>
+                </div>
+                <div class="pt-4 border-t border-slate-800 flex justify-end">
+                    <button onclick="closeReport()" class="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-slate-200 transition-colors">Return to Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIC -->
+    <script>
+        // *** IMPORTANT: SET YOUR API KEY HERE IF RUNNING LOCALLY ***
+        const apiKey = ""; 
+        // **********************************************************
+
+        const state = {
+            view: 'top150', // Default view
+            questions: Array.from({length: 50}, (_, i) => ({
+                id: i, 
+                title: i === 0 ? "Two Sum" : i === 1 ? "Valid Parentheses" : "Problem " + (i+1), 
+                diff: 'Easy', 
+                locked: i > 1
+            })),
+            activeQuestion: null,
+            cameraOn: true,
+            conversation: []
+        };
+
+        // --- DOM REFERENCES ---
+        const els = {
+            views: {
+                dashboard: document.getElementById('view-dashboard'),
+                top150: document.getElementById('view-top150')
+            },
+            navItems: document.querySelectorAll('.nav-item'),
+            top150: {
+                list: document.getElementById('questions-list'),
+                modal: document.getElementById('coding-modal'),
+                interface: document.getElementById('coding-interface')
+            },
+            report: {
+                modal: document.getElementById('report-modal'),
+                text: document.getElementById('report-text'),
+                score: document.getElementById('report-score'),
+                comp: document.getElementById('report-complexity')
+            }
+        };
+
+        function init() {
+            renderQuestions('easy');
+            lucide.createIcons();
+            // Ensure default nav state
+            navTo('top150');
+        }
+
+        // --- GEMINI API HELPER ---
+        async function callGemini(prompt) {
+            if (!apiKey) {
+                // Check if in preview env (handled automatically) or local
+                console.warn("API Key is empty. If running locally, please add your key to the script.");
+                return "Connection Error: API Key is missing. Please check the code settings.";
+            }
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "Error: No response from AI.";
+            } catch (error) {
+                console.error("Gemini Error:", error);
+                return "Connection Error: Unable to reach AI service. Please check your internet or API key.";
+            }
+        }
+
+        // --- NAVIGATION ---
+        function navTo(target) {
+            els.navItems.forEach(el => {
+                if(el.dataset.target === target) el.classList.add('active');
+                else el.classList.remove('active');
+            });
+            Object.values(els.views).forEach(el => el.classList.add('hidden'));
+            if(els.views[target]) els.views[target].classList.remove('hidden');
+        }
+
+        // --- TOP 150 (CODING) ---
+        function filterQuestions(type) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(t => {
+                if(t.innerText.toLowerCase().includes(type)) {
+                    t.classList.add('active', 'text-green-400', 'border-green-400');
+                    t.classList.remove('text-slate-400', 'border-transparent');
+                } else {
+                    t.classList.remove('active', 'text-green-400', 'border-green-400');
+                    t.classList.add('text-slate-400', 'border-transparent');
+                }
+            });
+            renderQuestions(type);
+        }
+
+        function renderQuestions(type) {
+            // Mock list generation
+            let list = state.questions.slice(0, 50); 
+            els.top150.list.innerHTML = list.map((q, idx) => `
+                <div onclick="${q.locked ? '' : `openCodingSetup(${q.id})`}" class="flex items-center justify-between p-4 bg-slate-900/40 border border-slate-800 rounded-xl transition-all ${q.locked ? 'opacity-50 cursor-not-allowed grayscale' : 'hover:border-indigo-500 cursor-pointer group'}">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center font-mono text-sm ${q.locked ? 'bg-slate-800 text-slate-600' : 'bg-green-500/20 text-green-400'}">
+                            ${q.locked ? '<i data-lucide="lock" class="w-4 h-4"></i>' : (idx + 1)}
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-white group-hover:text-indigo-400 transition-colors">${q.title}</h4>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="text-[10px] uppercase font-bold text-slate-500 bg-slate-800 px-1.5 py-0.5 rounded">C++</span>
+                                <span class="text-[10px] text-slate-500">${q.diff}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pr-2">
+                        ${q.locked ? '' : '<i data-lucide="chevron-right" class="w-5 h-5 text-slate-600 group-hover:text-indigo-500"></i>'}
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function openCodingSetup(id) {
+            state.activeQuestion = state.questions.find(q => q.id === id);
+            document.getElementById('modal-q-title').innerText = state.activeQuestion.title;
+            els.top150.modal.classList.remove('hidden');
+            els.top150.modal.classList.add('flex');
+            
+            if(state.cameraOn) {
+                navigator.mediaDevices.getUserMedia({video: true}).then(stream => {
+                    document.getElementById('modal-video-preview').srcObject = stream;
+                }).catch(e => console.log("Camera not available"));
+            }
+        }
+
+        function closeCodingModal() {
+            els.top150.modal.classList.add('hidden');
+            els.top150.modal.classList.remove('flex');
+            const v = document.getElementById('modal-video-preview');
+            if(v.srcObject) v.srcObject.getTracks().forEach(t => t.stop());
+        }
+
+        function startCodingSession() {
+            closeCodingModal();
+            const ui = els.top150.interface;
+            ui.classList.remove('hidden');
+            ui.classList.add('flex');
+            
+            document.getElementById('active-code-title').innerText = state.activeQuestion.title;
+            document.getElementById('active-problem-desc').innerText = "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.";
+            
+            const utterance = new SpeechSynthesisUtterance("Welcome. I've loaded the problem. Please write your solution in C Plus Plus.");
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function endCodingSession() {
+            els.top150.interface.classList.add('hidden');
+            els.top150.interface.classList.remove('flex');
+        }
+
+        async function submitSolution() {
+            const btn = document.getElementById('submit-btn');
+            const code = document.getElementById('code-editor').value;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = `<i data-lucide="loader-2" class="animate-spin w-4 h-4"></i> Analyzing...`;
+            
+            // Generate Report via Gemini
+            const prompt = `Role: Senior C++ Interviewer.
+            Task: Evaluate this code for "${state.activeQuestion.title}".
+            Code:
+            ${code}
+            
+            Output strictly in this format:
+            SCORE: [0-100]
+            COMPLEXITY: [e.g. O(n)]
+            FEEDBACK: [One paragraph technical feedback]`;
+
+            const analysis = await callGemini(prompt);
+            
+            // Parse (Simple regex/split for demo robustness)
+            const scoreMatch = analysis.match(/SCORE:\s*(\d+)/i);
+            const compMatch = analysis.match(/COMPLEXITY:\s*(.+)/i);
+            const feedMatch = analysis.match(/FEEDBACK:\s*([\s\S]+)/i);
+
+            // Fallback if parsing fails (e.g. error message)
+            if (!scoreMatch && analysis.includes("Error")) {
+                 els.report.text.innerText = analysis;
+                 els.report.score.innerText = "Err";
+                 els.report.comp.innerText = "--";
+            } else {
+                els.report.score.innerText = scoreMatch ? scoreMatch[1] + "%" : "85%";
+                els.report.comp.innerText = compMatch ? compMatch[1] : "O(n)";
+                els.report.text.innerText = feedMatch ? feedMatch[1].trim() : analysis;
+            }
+
+            endCodingSession();
+            els.report.modal.classList.remove('hidden');
+            els.report.modal.classList.add('flex');
+            
+            btn.innerHTML = originalText;
+        }
+
+        function closeReport() {
+            els.report.modal.classList.add('hidden');
+            els.report.modal.classList.remove('flex');
+            navTo('top150');
+        }
+
+        async function sendChatMessage() {
+            const input = document.getElementById('ai-chat-input');
+            const log = document.getElementById('ai-chat-log');
+            const text = input.value;
+            if(!text) return;
+            
+            // Add User Msg
+            log.innerHTML += `<div class="text-right text-white mb-2 p-2 bg-indigo-600 rounded-lg inline-block ml-auto max-w-[80%]">${text}</div><div class="clearfix"></div>`;
+            input.value = "";
+            log.scrollTop = log.scrollHeight;
+
+            // Call AI
+            const prompt = `Context: Coding interview for "${state.activeQuestion.title}". User asked: "${text}". Reply briefly as a helpful interviewer hint.`;
+            const reply = await callGemini(prompt);
+
+            log.innerHTML += `<div class="text-left text-indigo-200 mb-2 p-2 bg-slate-800 rounded-lg inline-block max-w-[80%]">${reply}</div>`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        init();
+    </script>
+</body>
+</html>
